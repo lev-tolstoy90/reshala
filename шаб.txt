@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РЕШАЛА | Решаю любые проблемы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ff3c00;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ff3c00;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .logo span {
+            color: #fff;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #ff3c00;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff3c00;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Герой */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') no-repeat center center/cover;
+            background-attachment: fixed;
+            padding-top: 80px;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 40px;
+            border-left: 5px solid #ff3c00;
+        }
+        
+        .hero h1 {
+            font-size: 5rem;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 3px 3px 0 #000;
+        }
+        
+        .motto {
+            font-size: 2.5rem;
+            color: #ff3c00;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 2px 2px 0 #000;
+            font-style: italic;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff3c00;
+            color: #fff;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            border-radius: 0;
+            letter-spacing: 2px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 5px 5px 0 #000;
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            background: #ff5e00;
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0 #000;
+        }
+        
+        /* Решаю */
+        .problems {
+            padding: 100px 0;
+            background: #0a0a0a;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            color: #ff3c00;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #ff3c00;
+        }
+        
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .problem-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background: #ff3c00;
+            transition: height 0.3s;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff3c00;
+            box-shadow: 0 10px 30px rgba(255, 60, 0, 0.2);
+        }
+        
+        .problem-card:hover::before {
+            height: 100%;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ff3c00;
+        }
+        
+        .problem-card ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .problem-card li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .problem-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff3c00;
+            font-weight: bold;
+        }
+        
+        /* Обо мне */
+        .about {
+            padding: 100px 0;
+            background: #121212;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: #ff3c00;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        .about-img {
+            position: relative;
+            border: 5px solid #ff3c00;
+            box-shadow: 15px 15px 0 #000;
+        }
+        
+        .about-img img {
+            width: 100%;
+            display: block;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+        
+        .about-img:hover img {
+            filter: grayscale(0%);
+        }
+        
+        /* Как работаю */
+        .process {
+            padding: 100px 0;
+            background: #0a0a0a;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            flex: 0 0 calc(25% - 30px);
+            text-align: center;
+            position: relative;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: #ff3c00;
+            color: #000;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 3px solid #000;
+        }
+        
+        .step h3 {
+            font-size: 1.5rem;
+            margin: 20px 0 15px;
+            color: #ff3c00;
+        }
+        
+        /* Контакты */
+        .contact {
+            padding: 100px 0;
+            background: #121212;
+            text-align: center;
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .contact-method {
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+        
+        .contact-method:hover {
+            border-color: #ff3c00;
+            transform: translateY(-10px);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            color: #ff3c00;
+            margin-bottom: 20px;
+        }
+        
+        .contact-method h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .contact-method p {
+            font-size: 1.2rem;
+        }
+        
+        /* Футер */
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 2px solid #ff3c00;
+        }
+        
+        .footer-motto {
+            font-size: 2rem;
+            color: #ff3c00;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-style: italic;
+        }
+        
+        .copyright {
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .motto {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .step {
+                flex: 0 0 calc(50% - 30px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 20px;
+            }
+            
+            .nav-links li {
+                margin: 0 15px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .motto {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .step {
+                flex: 0 0 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">РЕ<span>ШАЛА</span></div>
+            <ul class="nav-links">
+                <li><a href="#problems">Что решаю</a></li>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#process">Как работаю</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Герой -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ЛЮБЫЕ ПРОБЛЕМЫ</h1>
+                <div class="motto">пацанчик-хулиганчик, главное не мороси и слово держи</div>
+                <p style="font-size: 1.3rem; max-width: 600px;">Неважно, что случилось - я найду выход. Без лишних слов, без пустых обещаний. Только решение и результат.</p>
+                <a href="#contact" class="cta-button">Решить проблему</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Что решаю -->
+    <section id="problems" class="problems">
+        <div class="container">
+            <h2 class="section-title">Что решаю</h2>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <h3>Бизнес</h3>
+                    <ul>
+                        <li>Конфликты с партнерами</li>
+                        <li>Проблемы с поставщиками</li>
+                        <li>Конкурентные разборки</li>
+                        <li>Взыскание долгов</li>
+                        <li>Защита от рейдеров</li>
+                    </ul>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>Личное</h3>
+                    <ul>
+                        <li>Семейные конфликты</li>
+                        <li>Жилищные вопросы</li>
+                        <li>Проблемы с соседями</li>
+                        <li>Споры с госорганами</li>
+                        <li>Вопросы с наследством</li>
+                    </ul>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>Особые ситуации</h3>
+                    <ul>
+                        <li>Поиск людей</li>
+                        <li>Возврат имущества</li>
+                        <li>Урегулирование конфликтов</li>
+                        <li>Решение нестандартных задач</li>
+                        <li>Сложные переговоры</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Кто такой РЕШАЛА</h2>
+                    <p>Я - человек, который не ищет сложных путей. Жизнь научила: главное - найти суть проблемы и устранить её. Без лишних эмоций, без воды.</p>
+                    <p>За плечами - годы решения самых разных ситуаций. От мелких бытовых споров до сложных бизнес-конфликтов. Знаю, как разговаривать с людьми и как добиваться результата.</p>
+                    <p>Мой принцип: "Слово дал - слово держи". В этом весь я. Никаких пустых обещаний, только реальные действия и конкретный результат.</p>
+                    <p>Не важно, насколько сложная у вас ситуация - если её можно решить, я найду способ. Если нельзя - честно скажу об этом сразу.</p>
+                </div>
+                <div class="about-img">
+                    <img src="ывфвы.jpg" alt="Решала">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Как работаю -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2 class="section-title">Как я работаю</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Разговор</h3>
+                    <p>Вы рассказываете суть проблемы. Без прикрас, как есть.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Анализ</h3>
+                    <p>Я изучаю ситуацию со всех сторон. Нахожу корень проблемы.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Решение</h3>
+                    <p>Предлагаю варианты решения. Выбираем оптимальный.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Реализация</h3>
+                    <p>Беру всё в свои руки. Вы получаете результат.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Решить проблему</h2>
+            <p style="font-size: 1.5rem; max-width: 800px; margin: 0 auto 50px;">Не откладывайте - свяжитесь прямо сейчас. Первая консультация бесплатно.</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <h3>Звонок</h3>
+                    <p>+7 (999) 999-99-99</p>
+                    <p>Круглосуточно</p>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon"><i class="fab fa-telegram"></i></div>
+                    <h3>Telegram</h3>
+                    <p>@reshaem_vse</p>
+                    <p>Быстрый ответ</p>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <p>reshaem@vse.ru</p>
+                    <p>Для сложных вопросов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-motto">пацанчик-хулиганчик, главное не мороси и слово держи</div>
+            <div class="copyright">© 2025 РЕШАЛА. Все проблемы решаемы.</div>
+        </div>
+    </footer>
+</body>
+</html>
